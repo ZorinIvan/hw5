@@ -37,6 +37,42 @@ public:
     //*********************************************************************************************
     void print() const;
 
+
+    //*********************************************************************************************
+    //* Name:           RemoveFile
+    //* Description:    Remove a file from the directory
+    //* Parameters:     string file_name - a of the file to remove
+    //* Return value:   bool - true if the file was removed successfully
+    //*                        false if a file with the same name doesn't exist in the directory
+    //*********************************************************************************************
+    bool RemoveFile(string file_name);
+
+    //*********************************************************************************************
+    //* Name:           GetNumOfFiles
+    //* Description:    returns number of files in the directory
+    //* Parameters:    	none
+    //* Return value:   int - num of files.
+    //*********************************************************************************************
+    int GetNumOfFiles() const;
+
+
+    //*********************************************************************************************
+    //* Name:           GetFileByName
+    //* Description:    returns pointer to file/
+    //* Parameters:    	string file_name - name of the file we are searching for
+    //* Return value:   File* pointer to file.
+    //*********************************************************************************************
+    File* GetFileByName(string file_name);
+
+    //*********************************************************************************************
+    //* Name:           operator==
+    //* Description:    Implements the equality operator
+    //* Parameters:     File file - the file to compare against
+    //* Return value:   bool - true if both files are the same, false otherwise
+    //*********************************************************************************************
+    bool operator==(const File& file) const;
+
+
     // Need to define the iterator as friend to give it access to some of our members
     friend class FilesIterator;
 

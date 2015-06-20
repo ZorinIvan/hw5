@@ -18,7 +18,7 @@ string File::getPath() const{
 //returns file name+space+path
 string File::getfullName() const{
 	string full_name;
-	full_name=m_name + ' ' + m_path;
+	full_name=m_path+'/'+m_name;
 	return full_name;
 }
 
