@@ -1,8 +1,10 @@
 #include "Directory.h"
 #include <string>
 #include <iostream>
+#include "FilesIterator.h"
 
 using namespace std;
+
 
 // constructor
 Directory::Directory(string name, File* parent)
@@ -69,4 +71,20 @@ bool Directory::operator==(const File& file) const{
 	if(this->getfullName()==file.getfullName()) //check equity of two strings
 		return true; //true
 	return false; //false
+}
+
+FilesIterator Directory::begin()
+{ 
+	FilesIterator root(this); /*This directory is our start*/
+	return root;
+}
+
+FilesIterator Directory::end()
+{
+	FilesIterator current(this);
+	while (current.operator-> != NULL) /*We want to return the invalid item that gives us null file*/
+	{
+		++current;
+	}
+	return current;
 }

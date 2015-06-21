@@ -6,43 +6,6 @@
 #include <vector>
 #include <stack>
 
-/*Constructor*/
-FilesIterator::FilesIterator(File* root) : m_pFile(root), m_currentIndex(0)
-{
-	stack<int> m_stack;
-}
-
-FilesIterator::FilesIterator(const FilesIterator& fit) /*Probably is incorrect*/
-{
-	m_stack = fit.m_stack;
-	m_pFile = fit.m_pFile; /*Might be incorrect - when we delete fit it will be deleted*/
-	m_currentIndex = fit.m_currentIndex;
-}
-
-bool FilesIterator::operator==(const FilesIterator& rhs)
-{
-	if (rhs.m_currentIndex == m_currentIndex && rhs.m_stack == m_stack && rhs.m_pFile == m_pFile)
-		return true;
-	else
-		return false;
-}
-
-bool FilesIterator::operator!=(const FilesIterator& rhs)
-{
-	return !(operator==(rhs)); /*Return the opposite than ==*/
-}
-
-File& FilesIterator::operator*()
-{
-	return *m_pFile;
-}
-
-File* FilesIterator::operator->()
-{
-	return m_pFile;
-}
-
-
 //*********************************************************************************************
 //* Name:           operator++ (prefix)
 //* Description:    Implements the prefix increment operator (++it)
@@ -105,4 +68,38 @@ FilesIterator& FilesIterator::operator++()
     return *this;
 }
 
-// TODO: Add your code here...
+/*Constructor*/
+FilesIterator::FilesIterator(File* root) : m_pFile(root), m_currentIndex(0)
+{
+	stack<int> m_stack;
+}
+
+FilesIterator::FilesIterator(const FilesIterator& fit) /*Probably is incorrect*/
+{
+	m_stack = fit.m_stack;
+	m_pFile = fit.m_pFile; /*Might be incorrect - when we delete fit it will be deleted*/
+	m_currentIndex = fit.m_currentIndex;
+}
+
+bool FilesIterator::operator==(const FilesIterator& rhs)
+{
+	if (rhs.m_currentIndex == m_currentIndex && rhs.m_stack == m_stack && rhs.m_pFile == m_pFile)
+		return true;
+	else
+		return false;
+}
+
+bool FilesIterator::operator!=(const FilesIterator& rhs)
+{
+	return !(operator==(rhs)); /*Return the opposite than ==*/
+}
+
+File& FilesIterator::operator*()
+{
+	return *m_pFile;
+}
+
+File* FilesIterator::operator->()
+{
+	return m_pFile;
+}
