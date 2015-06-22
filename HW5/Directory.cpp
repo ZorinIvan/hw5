@@ -13,7 +13,7 @@ Directory::Directory(string name, File* parent)
 // destructor
 Directory::~Directory(){
 	for(int i=0; i<m_files.size(); i++){
-		delete m_files[i];
+	m_files[i]->~File();
 	}
 }
 
