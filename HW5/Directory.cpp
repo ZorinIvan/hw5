@@ -57,7 +57,7 @@ int Directory::GetNumOfFiles() const{
 	return m_files.size;
 }
 
-File* Directory::GetFileByName(string file_name){
+File* Directory::GetFile(string file_name){
 	if(m_files.size()==0)
 		return NULL; //empty vector
 	for(int i=0; i<m_files.size(); i++){
@@ -82,7 +82,7 @@ FilesIterator Directory::begin()
 FilesIterator Directory::end()
 {
 	FilesIterator current(this);
-	while (current.operator-> != NULL) /*We want to return the invalid item that gives us null file*/
+	while (current->getName() != "") /*We want to return the invalid item that gives us null file*/
 	{
 		++current;
 	}
