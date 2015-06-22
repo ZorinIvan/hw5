@@ -22,7 +22,7 @@ Directory::Directory(const Directory& obj )
 // destructor
 Directory::~Directory(){
 	for (unsigned int i = 0; i<(int)m_files.size(); i++){
-	m_files[i]->~File();
+		delete m_files[i];
 	}
 }
 
