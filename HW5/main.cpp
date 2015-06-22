@@ -125,7 +125,7 @@ int main()
 
         if (tokens[0] == "cat")
         {
-			File* needed_file = cwd->GetFileByName(tokens[1]); /*Get the text file*/
+			File* needed_file = cwd->GetFile(tokens[1]); /*Get the text file*/
 			if (needed_file == NULL ) /*File not found*/
 				continue;
 			/*Need to add check if this is a text file*/

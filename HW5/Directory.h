@@ -57,12 +57,12 @@ public:
 
 
     //*********************************************************************************************
-    //* Name:           GetFileByName
+    //* Name:           GetFile
     //* Description:    returns pointer to file/
     //* Parameters:    	string file_name - name of the file we are searching for
     //* Return value:   File* pointer to file.
     //*********************************************************************************************
-    File* GetFileByName(string file_name);
+    File* GetFile(string file_name);
 
     //*********************************************************************************************
     //* Name:           operator==
