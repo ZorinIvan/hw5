@@ -177,6 +177,7 @@ int main()
 			{
 				cout << i->getName() << endl;
 			}
+			/*How to fix this crap*/
         }
 
         if (tokens[0] == "find")
