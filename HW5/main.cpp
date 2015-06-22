@@ -159,10 +159,9 @@ int main()
 
         if (tokens[0] == "mkdir")
         {
-			Directory* new_dir= new Directory(tokens[1], cwd); /*Create a new directory with this name and the current parent folder*/
+			Directory* new_dir = new Directory(tokens[1], cwd); /*Create a new directory with this name and the current parent folder*/
 			if (cwd->AddFile(new_dir) == false)
 				cerr << "Already have this directory" << endl;
-
         }
 
         if (tokens[0] == "cat")
@@ -197,13 +196,40 @@ int main()
             // Output redirect ">"
             if (params.size() == 2 && params[0] == ">")
             {
-                // Insert code here...
+				File* old_file = cwd->GetFile(message[2]);
+				if (old_file == NULL) /*It didn't exist yet*/
+				{
+					TextFile* new_textfile = new TextFile(message[2], cwd, message[1]);
+					cwd->AddFile(new_textfile);
+				}
+				else
+				{
+					delete old_file;
+					TextFile* new_textfile = new TextFile(message[2], cwd, message[1]);
+					cwd->AddFile(new_textfile);
+				}
             }
 
             // Output redirect ">>"
             if (params.size() == 2 && params[0] == ">>")
             {
-                // Insert code here...
+				File* old_file = cwd->GetFile(message[2]);
+				if (old_file == NULL) /*Doesn't exist yet*/
+				{
+					TextFile* new_textfile = new TextFile(message[2], cwd, message[1]);
+					cwd->AddFile(new_textfile);
+				}
+				else
+				{
+					TextFile* new_textfile = dynamic_cast<TextFile*>(old_file);
+					if (new_textfile == NULL) /*Not a text file*/
+						continue;
+					else
+					{
+						new_textfile->addText(message[1]);
+						continue;
+					}
+				}
             }
             
             cerr << "Parse error while parsing " << tokens[0] << endl;
@@ -218,7 +244,7 @@ int main()
         {
 			FilesIterator itB = cwd->begin();
 			FilesIterator itE = cwd->end();
-			for (FilesIterator i = itB; i != itE; i++)
+			for (FilesIterator i = ++itB; i != itE; i++)
 			{
 				cout << i->getName() << endl;
 			}
