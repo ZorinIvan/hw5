@@ -21,7 +21,7 @@ public:
     //* Return value:   None
     //* Output example:
     //* Text file:
-    //*     Name: /root/dir2/file3
+    //* 	Name: /root/dir2/file3
     //*     Text: "test"
     //*********************************************************************************************
     void print() const;

@@ -108,6 +108,8 @@ int main()
 
                 // Check if pFile is NULL or if it's not pointing to a directory
                 Directory* pDir = dynamic_cast<Directory*>(pFile);
+
+                /*!!!!! if not necessary !!!!!*/
                 if (NULL != pDir)
                 {
                     cwd = pDir;
@@ -169,7 +171,9 @@ int main()
 
         if (tokens[0] == "ls")
         {
-            // Insert code here...
+        	for(int i=0; i<cwd->m_files.size(); i++){
+        		cout << cwd->m_files[i]->m_name << endl;
+        	}
         }
 
         if (tokens[0] == "find")

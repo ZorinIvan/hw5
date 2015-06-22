@@ -13,8 +13,9 @@ TextFile::TextFile(TextFile obj)
 	:File(obj.m_name, obj.m_parent), text(obj.text){}
 
 void TextFile::print() const{
-	cout<<"Name: "<<getfullName()<<endl; //print path+file name
-	cout<<"Text: "<<text<<endl;
+	cout<<"Text file:"<<endl;
+	cout<<"\tName: "<<getfullName()<<endl; //print path+file name
+	cout<<"\tText: "<<text<<endl;
 }
 
 bool TextFile::operator==(const File& file) const{

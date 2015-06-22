@@ -40,8 +40,9 @@ bool Directory::AddFile(File* pFile){
 }
 
 void Directory::print() const{
-	cout<<"Name: "<<getfullName()<<endl; //print path+dir name
-	cout<<"Files: ";
+	cout<<"Directory:"<<endl;
+	cout<<"\tName: "<<getfullName()<<endl; //print path+dir name
+	cout<<"\tFiles: ";
 	for(int i=0; i<m_files.size(); i++ ){ //print all file names in the dir
 		cout<<m_files[i]->getName()<<" ";
 	}
