@@ -208,11 +208,13 @@ int main()
 
         if (tokens[0] == "ls")
         {
-            FilesIterator itB = cwd->begin();
-            FilesIterator itE = cwd->end();
-        	for(FilesIterator i=itB; i!=itE; i++){
-        		cout << i->getName() << endl;
-        	}
+			FilesIterator itB = cwd->begin();
+			FilesIterator itE = cwd->end();
+			for (FilesIterator i = itB; i != itE; i++)
+			{
+				cout << i->getName() << endl;
+			}
+			/*How to fix this crap*/
         }
 
         if (tokens[0] == "find")
