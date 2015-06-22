@@ -92,8 +92,8 @@ public:
     //*********************************************************************************************
     bool operator()(File& file)
     {
-    	TextFile textfile = dynamic_cast<TextFile>(file);
-        if (NULL!=textfile && textfile.getText().find(m_string) != string::npos)
+    	TextFile* textfile = dynamic_cast<TextFile*>(&file);
+        if (NULL!=textfile && textfile->getText().find(m_string) != string::npos)
         {
             return true;
         }
@@ -165,16 +165,15 @@ int main()
         if (tokens[0] == "cat")
         {
 			File* needed_file = cwd->GetFile(tokens[1]); /*Get the text file*/
-			TextFile* test = new TextFile("test", root, "");
 			if (needed_file == NULL ) /*File not found*/
 				continue;
-			if (typeid(needed_file) != typeid(*test)) /*If this is not a TextFile file*/
+			TextFile* needed_file_text = dynamic_cast<TextFile*>(needed_file);
+			if (NULL != needed_file_text) /*If this is not a TextFile file*/
 			{
-				delete test;
 				continue;
 			}
 			/*Need to add check if this is a text file*/
-			cout << dynamic_cast<TextFile*>(needed_file)->getText() /*If not print this file*/ << endl;
+			cout << needed_file_text->getText() /*If not print this file*/ << endl;
         }
 
         if (tokens[0] == "echo")
