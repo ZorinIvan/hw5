@@ -5,7 +5,12 @@ using namespace std;
 
 //Constructor]
 File::File(string name, File* parent)
-	: m_name(name), m_parent(parent){}
+	: m_name(name), m_parent(parent){
+	if(parent==NULL)
+		m_path='/';
+	else
+		m_path=parent->getfullName();
+}
 
 string File::getName() const{
 	return m_name;
