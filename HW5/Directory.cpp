@@ -82,7 +82,7 @@ FilesIterator Directory::begin()
 FilesIterator Directory::end()
 {
 	FilesIterator current(this);
-	while (current->getName() != "") /*We want to return the invalid item that gives us null file*/
+	while (current.operator->() != NULL) /*We want to return the invalid item that gives us null file*/
 	{
 		++current;
 	}
