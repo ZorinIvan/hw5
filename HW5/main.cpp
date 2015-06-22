@@ -165,8 +165,14 @@ int main()
         if (tokens[0] == "cat")
         {
 			File* needed_file = cwd->GetFile(tokens[1]); /*Get the text file*/
+			TextFile* test = new TextFile("test", root, "");
 			if (needed_file == NULL ) /*File not found*/
 				continue;
+			if (typeid(needed_file) != typeid(*test)) /*If this is not a TextFile file*/
+			{
+				delete test;
+				continue;
+			}
 			/*Need to add check if this is a text file*/
 			cout << dynamic_cast<TextFile*>(needed_file)->getText() /*If not print this file*/ << endl;
         }
