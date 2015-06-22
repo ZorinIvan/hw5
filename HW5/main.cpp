@@ -159,8 +159,8 @@ int main()
 
         if (tokens[0] == "mkdir")
         {
-			Directory new_dir(tokens[1], cwd); /*Create a new directory with this name and the current parent folder*/
-			if (cwd->AddFile(&new_dir) == false)
+			Directory* new_dir= new Directory(tokens[1], cwd); /*Create a new directory with this name and the current parent folder*/
+			if (cwd->AddFile(new_dir) == false)
 				cerr << "Already have this directory" << endl;
 
         }

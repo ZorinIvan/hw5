@@ -7,7 +7,7 @@ using namespace std;
 File::File(string name, File* parent)
 	: m_name(name), m_parent(parent){
 	if(parent==NULL)
-		m_path='/';
+		m_path="/";
 	else
 		m_path=parent->getfullName();
 }
@@ -23,7 +23,7 @@ string File::getPath() const{
 //returns file name+space+path
 string File::getfullName() const{
 	string full_name;
-	if(m_path=='/')
+	if(m_path=="/")
 		full_name=m_path+m_name;
 	else
 		full_name=m_path+'/'+m_name;
