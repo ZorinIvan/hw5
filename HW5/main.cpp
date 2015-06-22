@@ -120,12 +120,16 @@ int main()
 
         if (tokens[0] == "mkdir")
         {
-            // Insert code here...
+			Directory new_dir(tokens[1], cwd); /*Create a new directory with this name and the current parent folder*/
         }
 
         if (tokens[0] == "cat")
         {
-            // Insert code here...
+			File* needed_file = cwd->GetFileByName(tokens[1]); /*Get the text file*/
+			if (needed_file == NULL ) /*File not found*/
+				continue;
+			/*Need to add check if this is a text file*/
+			cout << dynamic_cast<TextFile*>(needed_file)->getText() /*If not print this file*/ << endl;
         }
 
         if (tokens[0] == "echo")
@@ -160,7 +164,7 @@ int main()
 
         if (tokens[0] == "pwd")
         {
-            // Insert code here...
+			cout << cwd->getPath() << endl; /*Printing the current path*/
         }
 
         if (tokens[0] == "ls")
