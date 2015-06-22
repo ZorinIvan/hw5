@@ -10,6 +10,15 @@ using namespace std;
 Directory::Directory(string name, File* parent)
 	:File(name, parent){}
 
+//copy constructor
+Directory::Directory(const Directory& obj )
+	:File(obj.m_name, obj.m_parent){
+	for(int i=0; i<obj.m_files.size();i++){
+		m_files[i]=obj.m_files[i];
+	}
+}
+
+
 // destructor
 Directory::~Directory(){
 	for(int i=0; i<m_files.size(); i++){

@@ -11,6 +11,9 @@ public:
     // c'tor
     TextFile(string name, File* parent = NULL, string text = "");
 
+    //cc'tor
+    TextFile(TextFile obj);
+
     //*********************************************************************************************
     //* Name:            print
     //* Description:    Print the text file to the screen

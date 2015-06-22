@@ -8,6 +8,10 @@ using namespace std;
 TextFile::TextFile(string name, File* parent, string text)
 	:File(name, parent), text(text){}
 
+//cc'tor
+TextFile::TextFile(TextFile obj)
+	:File(obj.m_name, obj.m_parent), text(obj.text){}
+
 void TextFile::print() const{
 	cout<<"Name: "<<getfullName()<<endl; //print path+file name
 	cout<<"Text: "<<text<<endl;

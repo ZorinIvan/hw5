@@ -12,6 +12,9 @@ public:
     // c'tor
     Directory(string name, File* parent = NULL);
 
+    //cc'tor
+    Directory(const Directory& obj );
+
     // d'tor
     ~Directory();
 
