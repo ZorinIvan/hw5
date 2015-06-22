@@ -13,7 +13,7 @@ Directory::Directory(string name, File* parent)
 //copy constructor
 Directory::Directory(const Directory& obj )
 	:File(obj.m_name, obj.m_parent){
-	for(int i=0; i<obj.m_files.size();i++){
+	for(unsigned int i=0; i<obj.m_files.size();i++){
 		m_files[i]=obj.m_files[i];
 	}
 }
@@ -21,14 +21,14 @@ Directory::Directory(const Directory& obj )
 
 // destructor
 Directory::~Directory(){
-	for(int i=0; i<m_files.size(); i++){
+	for (unsigned int i = 0; i<(int)m_files.size(); i++){
 	m_files[i]->~File();
 	}
 }
 
 bool Directory::AddFile(File* pFile){
 	/*check if the file already exists*/
-	for(int i=0; i<m_files.size(); i++){
+	for (unsigned int i = 0; i<m_files.size(); i++){
 
 		//??????????????????????????????
 		if(m_files[i]==pFile) //overloading operator "=="
@@ -42,7 +42,7 @@ bool Directory::AddFile(File* pFile){
 void Directory::print() const{
 	cout<<"Name: "<<getfullName()<<endl; //print path+dir name
 	cout<<"Files: ";
-	for(int i=0; i<m_files.size(); i++ ){ //print all file names in the dir
+	for (unsigned int i = 0; i<m_files.size(); i++){ //print all file names in the dir
 		cout<<m_files[i]->getName()<<" ";
 	}
 	cout<<endl;
@@ -52,7 +52,7 @@ void Directory::print() const{
 bool Directory::RemoveFile(string file_name){
 	if(m_files.size()==0) //nothing to remove
 		return false;
-	for(int i=0; i<m_files.size(); i++ ){
+	for (unsigned int i = 0; i<m_files.size(); i++){
 		if(m_files[i]->getName()==file_name){
 			delete m_files[i]; //??????????????????
 			m_files.erase(m_files.begin()+i);
@@ -63,13 +63,13 @@ bool Directory::RemoveFile(string file_name){
 }
 
 int Directory::GetNumOfFiles() const{
-	return m_files.size;
+	return (int)m_files.size();
 }
 
 File* Directory::GetFile(string file_name){
 	if(m_files.size()==0)
 		return NULL; //empty vector
-	for(int i=0; i<m_files.size(); i++){
+	for (unsigned int i = 0; i<m_files.size(); i++){
 		if(m_files[i]->getName()==file_name)
 			return m_files[i];
 	}

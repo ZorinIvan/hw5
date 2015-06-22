@@ -9,7 +9,7 @@ TextFile::TextFile(string name, File* parent, string text)
 	:File(name, parent), text(text){}
 
 //cc'tor
-TextFile::TextFile(TextFile obj)
+TextFile::TextFile(TextFile& obj)
 	:File(obj.m_name, obj.m_parent), text(obj.text){}
 
 void TextFile::print() const{

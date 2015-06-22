@@ -12,7 +12,7 @@ public:
     TextFile(string name, File* parent = NULL, string text = "");
 
     //cc'tor
-    TextFile(TextFile obj);
+    TextFile(TextFile& obj);
 
     //*********************************************************************************************
     //* Name:            print
