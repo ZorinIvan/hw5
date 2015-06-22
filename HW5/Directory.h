@@ -97,7 +97,7 @@ public:
     //*********************************************************************************************
     FilesIterator end();
 
-    // TODO: Add your code here...
+	string getPath() const;
 
 protected:
     vector<File*> m_files;
