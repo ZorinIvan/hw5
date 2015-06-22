@@ -71,6 +71,43 @@ private:
     string m_string;
 };
 
+
+// A helper class for implementing the "grep" command
+// This class accepts a string in the constructor to be matched against text in the file.
+// The class also implement the () operator which accepts a Textfile, this method compares the
+// file's text against the string from the constructor and returns true if there's a partial match
+class FindTextHelper
+{
+public:
+    FindTextHelper(string st) :
+            m_string(st)
+    {
+    }
+
+    //*********************************************************************************************
+    //* Name:           operator()
+    //* Description:    Implements the function call operator
+    //* Parameters:     File file - the file to compare against
+    //* Return value:   bool - true if file's text matches the string m_string
+    //*********************************************************************************************
+    bool operator()(File& file)
+    {
+    	TextFile textfile = dynamic_cast<TextFile>(file);
+        if (NULL!=textfile && textfile.getText().find(m_string) != string::npos)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+private:
+    string m_string;
+};
+
+
+
+
 int main()
 {
     Directory* root = new Directory("root");
@@ -209,7 +246,31 @@ int main()
 
         if (tokens[0] == "grep")
         {
-            // Insert code here...
+            // Check number of parameters
+            if (tokens.size() == 2)
+            {
+                FilesIterator itB = cwd->begin();
+                FilesIterator itE = cwd->end();
+
+                // Initialize findHeleper with our search string
+                FindTextHelper findHelper(tokens[1]);
+
+                // Use find_if to search for file that return true for our helper function
+                FilesIterator it = find_if(itB, itE, findHelper);
+                while (it != itE)
+                {
+                    cout << "found: " << it->getfullName() << endl;
+                    it++;
+
+                    // Since find_if returns the first match, keep calling it until we reach the
+                    // end of our tree
+                    it = find_if(it, itE, findHelper);
+                }
+
+                continue;
+            }
+
+            cerr << "Parse error while parsing " << tokens[0] << endl;
         }
 
         if (tokens[0] == "exit")
