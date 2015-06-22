@@ -171,8 +171,10 @@ int main()
 
         if (tokens[0] == "ls")
         {
-        	for(int i=0; i<cwd->m_files.size(); i++){
-        		cout << cwd->m_files[i]->m_name << endl;
+            FilesIterator itB = cwd->begin();
+            FilesIterator itE = cwd->end();
+        	for(FilesIterator i=itB; i!=itE; i++){
+        		cout << i->getName() << endl;
         	}
         }
 
