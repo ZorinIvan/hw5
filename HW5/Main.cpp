@@ -391,6 +391,12 @@ int main()
             }
     	}
 
+		if (tokens[0] != "mkdir" && tokens[0] != "pwd" && tokens[0] != "cd" && tokens[0] != "rm" && tokens[0] != "cat" && tokens[0] != "echo" && tokens[0] != "ls" && tokens[0] != "print" && tokens[0] != "find" && tokens[0] != "grep" && tokens[0] != "exit")
+		{
+			cerr << "Parse error while parsing " << tokens[0] << endl;
+			continue;
+		}
+
     }//while
 
 
