@@ -345,10 +345,12 @@ int main()
 				if (deleted_file == NULL) /*File not found*/
 				{
 					cerr << "Parse error while parsing " << tokens[0] << endl;
+					continue;
 				}
 				if (cwd->RemoveFile(tokens[1]) == false) //will call the d'tor of file. It's a virtual method so a right d'tor will be called.
 				{
 					cerr << "Parse error while parsing " << tokens[0] << endl;
+					continue;
 				}
 			}
 		}
