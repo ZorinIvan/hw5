@@ -179,8 +179,8 @@ int main()
 			File* needed_file = cwd->GetFile(tokens[1]); /*Get the text file*/
 			if (needed_file == NULL) /*File not found*/
 			{
-				continue;
 				cerr << "Parse error while parsing " << tokens[0] << endl;
+				continue;
 			}
 			TextFile* needed_file_text = dynamic_cast<TextFile*>(needed_file);
 			if (NULL == needed_file_text) /*If this is not a TextFile file*/
