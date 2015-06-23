@@ -340,18 +340,9 @@ int main()
 				File* deleted_file = cwd->GetFile(tokens[1]);
 				if (deleted_file == NULL) /*File not found*/
 				{
-					/*Need to print failure*/
+					cerr << "Parse error while parsing " << tokens[0] << endl;
 				}
-				Directory* deleted_dir = dynamic_cast<Directory*>(deleted_file);
-				/*Going to check if this is a directory*/
-				if (deleted_dir == NULL) /*Not a directory*/
-				{
-					delete deleted_file;
-				}
-				else /*It is a dir*/
-				{
-
-				}
+				delete deleted_file; //will call the d'tor of file. It's a virtual method so a right d'tor will be called.
 			}
 		}
 
@@ -380,17 +371,6 @@ int main()
             	itB++;
             }
     	}
-
-    	if(tokens[0]=="rm"){
-        	if(tokens.size()!=2){
-        		cerr << "Parse error while parsing " << tokens[0] << endl;
-        		continue;
-        	}
-
-
-    	}
-
-
 
     }//while
 
