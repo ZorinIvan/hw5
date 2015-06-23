@@ -21,7 +21,7 @@ Directory::Directory(const Directory& obj )
 
 // destructor
 Directory::~Directory(){
-	for (unsigned int i = 0; i<(int)m_files.size(); i++){
+	for (unsigned int i = 0; i<m_files.size(); i++){
 		delete m_files[i];
 	}
 }
@@ -44,7 +44,7 @@ void Directory::print() const{
 	cout<<"Directory:"<<endl;
 	cout<<"\tName: "<<getfullName()<<endl; //print path+dir name
 	cout<<"\tFiles: ";
-	for(int i=0; i<m_files.size(); i++ ){ //print all file names in the dir
+	for(unsigned int i=0; i<m_files.size(); i++ ){ //print all file names in the dir
 		cout<<m_files[i]->getName()<<" ";
 	}
 	cout<<endl;
