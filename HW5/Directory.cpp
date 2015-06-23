@@ -43,9 +43,9 @@ void Directory::print() const{
 
 	cout<<"Directory:"<<endl;
 	cout<<"\tName: "<<getfullName()<<endl; //print path+dir name
-	cout<<"\tFiles: ";
-	for(unsigned int i=0; i<m_files.size(); i++ ){ //print all file names in the dir
-		cout<<m_files[i]->getName()<<" ";
+	cout<<"\tFiles:";
+	for(unsigned int i=0; i<m_files.size(); i++ ){//print all file names in the dir
+		cout<<" " << m_files[i]->getName()<<endl;
 	}
 	cout<<endl;
 }

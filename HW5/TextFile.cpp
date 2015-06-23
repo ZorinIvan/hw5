@@ -15,7 +15,7 @@ TextFile::TextFile(TextFile& obj)
 void TextFile::print() const{
 	cout<<"Text file:"<<endl;
 	cout<<"\tName: "<<getfullName()<<endl; //print path+file name
-	cout<<"\tText: "<<text<<endl;
+	cout<<"\tText: "<<'"'<<text<<'"'<<endl;
 }
 
 bool TextFile::operator==(const File& file) const{
