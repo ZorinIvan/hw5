@@ -90,6 +90,7 @@ public:
     //* Parameters:     File file - the file to compare against
     //* Return value:   bool - true if file's text matches the string m_string
     //*********************************************************************************************
+
     bool operator()(File& file)
     {
     	TextFile* textfile = dynamic_cast<TextFile*>(&file);
@@ -159,13 +160,24 @@ int main()
 
         if (tokens[0] == "mkdir")
         {
-			Directory* new_dir = new Directory(tokens[1], cwd); /*Create a new directory with this name and the current parent folder*/
-			if (cwd->AddFile(new_dir) == false)
-				cerr << "Already have this directory" << endl;
+        	if(tokens.size()!=2){
+        		cerr << "Parse error while parsing " << tokens[0] << endl;
+        		continue;
+        	}
+
+			Directory dir(tokens[1], cwd);
+			Directory*  pdir=&dir;
+			//Directory* new_dir = new Directory(tokens[1], cwd); /*Create a new directory with this name and the current parent folder*/
+			if (cwd->AddFile(pdir) == false)
+	            cerr << "Parse error while parsing " << tokens[0] << endl;
         }
 
         if (tokens[0] == "cat")
         {
+        	if(tokens.size()!=2){
+        		cerr << "Parse error while parsing " << tokens[0] << endl;
+        		continue;
+        	}
 			File* needed_file = cwd->GetFile(tokens[1]); /*Get the text file*/
 			if (needed_file == NULL ) /*File not found*/
 				continue;
@@ -237,18 +249,25 @@ int main()
 
         if (tokens[0] == "pwd")
         {
+        	if(tokens.size()!=1){
+        		cerr << "Parse error while parsing " << tokens[0] << endl;
+        		continue;
+        	}
 			cout << cwd->getPath() << endl; /*Printing the current path*/
         }
 
         if (tokens[0] == "ls")
         {
+        	if(tokens.size()!=1){
+        		cerr << "Parse error while parsing " << tokens[0] << endl;
+        		continue;
+        	}
 			FilesIterator itB = cwd->begin();
 			FilesIterator itE = cwd->end();
 			for (FilesIterator i = ++itB; i != itE; i++)
 			{
 				cout << i->getName() << endl;
 			}
-			/*How to fix this crap*/
         }
 
         if (tokens[0] == "find")
@@ -311,9 +330,44 @@ int main()
 
         if (tokens[0] == "exit")
         {
+        	if(tokens.size()!=1){
+        		cerr << "Parse error while parsing " << tokens[0] << endl;
+        		continue;
+        	}
             break;
         }
-    }
+
+    	if(tokens[0]=="print")
+    	{
+        	if(tokens.size()!=1){
+        		cerr << "Parse error while parsing " << tokens[0] << endl;
+        		continue;
+        	}
+
+            FilesIterator itB = cwd->begin();
+            FilesIterator itE = cwd->end();
+
+            while(itB!=itE)
+            {
+            	itB->print();
+            	itB++;
+            }
+    	}
+
+    	if(tokens[0]=="rm"){
+        	if(tokens.size()!=2){
+        		cerr << "Parse error while parsing " << tokens[0] << endl;
+        		continue;
+        	}
+
+
+    	}
+
+
+
+    }//while
+
+
 
     delete root;
     return 0;
