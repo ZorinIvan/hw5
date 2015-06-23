@@ -268,12 +268,10 @@ int main()
         		cerr << "Parse error while parsing " << tokens[0] << endl;
         		continue;
         	}
-			FilesIterator itB = cwd->begin();
-			itB++;
-			FilesIterator itE = cwd->end();
-			for (FilesIterator i = itB; i != itE; i++)
+			int length = cwd->GetNumOfFiles();
+			for (int i = 0; i < length;i++)
 			{
-				cout << i->getName() << endl;
+				cout << cwd->getFileByPlace(i)->getName() << endl;
 			}
         }
 

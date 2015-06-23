@@ -99,6 +99,8 @@ public:
 
 	string getPath() const;
 
+	File* getFileByPlace(int place) const;
+
 protected:
     vector<File*> m_files;
 };

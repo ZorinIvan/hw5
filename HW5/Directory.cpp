@@ -107,3 +107,13 @@ string Directory::getPath() const
 {
 	return getfullName();
 }
+
+File* Directory::getFileByPlace(int place) const
+{
+	if (place >= m_files.size())
+		return NULL;
+	else
+	{
+		return m_files[place];
+	}
+}
