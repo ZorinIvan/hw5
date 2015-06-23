@@ -221,7 +221,7 @@ int main()
 				}
 				else
 				{
-					delete old_file;
+					cwd->RemoveFile(params[1]);
 					TextFile* new_textfile = new TextFile(params[1], cwd, message[1]);
 					cwd->AddFile(new_textfile);
 				}
