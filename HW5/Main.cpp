@@ -221,6 +221,11 @@ int main()
 				}
 				else
 				{
+					if (dynamic_cast<TextFile*>(old_file) == NULL) /*This is not a text file*/
+					{
+						cerr << "Parse error while parsing " << tokens[0] << endl;
+						continue;
+					}
 					cwd->RemoveFile(params[1]);
 					TextFile* new_textfile = new TextFile(params[1], cwd, message[1]);
 					cwd->AddFile(new_textfile);
@@ -240,7 +245,10 @@ int main()
 				{
 					TextFile* new_textfile = dynamic_cast<TextFile*>(old_file);
 					if (new_textfile == NULL) /*Not a text file*/
+					{
+						cerr << "Parse error while parsing " << tokens[0] << endl;
 						continue;
+					}
 					else
 					{
 						new_textfile->addText(message[1]);
@@ -250,6 +258,7 @@ int main()
 			}  
 			else{ /*If both conditions dont work*/
 				cerr << "Parse error while parsing " << tokens[0] << endl;
+				continue;
 			}
         }
 
