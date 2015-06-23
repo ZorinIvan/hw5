@@ -31,7 +31,7 @@ bool Directory::AddFile(File* pFile){
 	for (unsigned int i = 0; i<m_files.size(); i++){
 
 		//??????????????????????????????
-		if(m_files[i]==pFile) //overloading operator "=="
+		if(m_files[i]->getfullName()==pFile->getfullName()) //overloading operator "=="
 			return false;//file with the same name already exists in this directory
 	}
 

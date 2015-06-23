@@ -167,7 +167,10 @@ int main()
 
 			Directory* new_dir = new Directory(tokens[1], cwd); /*Create a new directory with this name and the current parent folder*/
 			if (cwd->AddFile(new_dir) == false)
-	            cerr << "Parse error while parsing " << tokens[0] << endl;
+			{
+				delete new_dir;
+				cerr << "Parse error while parsing " << tokens[0] << endl;
+			}
         }
 
         if (tokens[0] == "cat")
