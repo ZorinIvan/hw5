@@ -14,6 +14,9 @@ public:
     //cc'tor
     TextFile(TextFile& obj);
 
+	//d'tor
+	~TextFile();
+
     //*********************************************************************************************
     //* Name:            print
     //* Description:    Print the text file to the screen

@@ -12,6 +12,11 @@ TextFile::TextFile(string name, File* parent, string text)
 TextFile::TextFile(TextFile& obj)
 	:File(obj.m_name, obj.m_parent), text(obj.text){}
 
+TextFile::~TextFile()
+{
+	delete this;
+}
+
 void TextFile::print() const{
 	cout<<"Text file:"<<endl;
 	cout<<"\tName: "<<getfullName()<<endl; //print path+file name
