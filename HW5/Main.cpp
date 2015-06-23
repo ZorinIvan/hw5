@@ -226,9 +226,7 @@ int main()
 						cerr << "Parse error while parsing " << tokens[0] << endl;
 						continue;
 					}
-					cwd->RemoveFile(params[1]);
-					TextFile* new_textfile = new TextFile(params[1], cwd, message[1]);
-					cwd->AddFile(new_textfile);
+					dynamic_cast<TextFile*>(old_file)->updateText(message[1]);
 				}
             }
 
