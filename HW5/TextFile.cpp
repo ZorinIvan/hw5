@@ -14,7 +14,6 @@ TextFile::TextFile(TextFile& obj)
 
 TextFile::~TextFile()
 {
-	delete this;
 }
 
 void TextFile::print() const{
