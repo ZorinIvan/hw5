@@ -108,7 +108,7 @@ string Directory::getPath() const
 	return getfullName();
 }
 
-File* Directory::getFileByPlace(int place) const
+File* Directory::getFileByPlace(unsigned int place) const
 {
 	if (place >= m_files.size())
 		return NULL;
