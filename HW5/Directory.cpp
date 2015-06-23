@@ -95,10 +95,10 @@ FilesIterator Directory::end()
 	FilesIterator current(this);
 	while (current.operator->() != NULL) /*We want to return the invalid item that gives us null file*/
 	{
-		FilesIterator memory(current);
+		//FilesIterator memory(current);
 		++current;
-		if (current.operator->() == NULL)
-			return memory;
+		//if (current.operator->() == NULL)
+			//return memory;
 	}
 	return current;
 }

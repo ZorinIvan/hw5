@@ -165,10 +165,8 @@ int main()
         		continue;
         	}
 
-			Directory dir(tokens[1], cwd);
-			Directory*  pdir=&dir;
-			//Directory* new_dir = new Directory(tokens[1], cwd); /*Create a new directory with this name and the current parent folder*/
-			if (cwd->AddFile(pdir) == false)
+			Directory* new_dir = new Directory(tokens[1], cwd); /*Create a new directory with this name and the current parent folder*/
+			if (cwd->AddFile(new_dir) == false)
 	            cerr << "Parse error while parsing " << tokens[0] << endl;
         }
 
@@ -179,11 +177,15 @@ int main()
         		continue;
         	}
 			File* needed_file = cwd->GetFile(tokens[1]); /*Get the text file*/
-			if (needed_file == NULL ) /*File not found*/
-				continue;
-			TextFile* needed_file_text = dynamic_cast<TextFile*>(needed_file);
-			if (NULL != needed_file_text) /*If this is not a TextFile file*/
+			if (needed_file == NULL) /*File not found*/
 			{
+				continue;
+				cerr << "Parse error while parsing " << tokens[0] << endl;
+			}
+			TextFile* needed_file_text = dynamic_cast<TextFile*>(needed_file);
+			if (NULL == needed_file_text) /*If this is not a TextFile file*/
+			{
+				cerr << "Parse error while parsing " << tokens[0] << endl;
 				continue;
 			}
 			/*Need to add check if this is a text file*/
@@ -208,27 +210,27 @@ int main()
             // Output redirect ">"
             if (params.size() == 2 && params[0] == ">")
             {
-				File* old_file = cwd->GetFile(message[2]);
+				File* old_file = cwd->GetFile(params[1]);
 				if (old_file == NULL) /*It didn't exist yet*/
 				{
-					TextFile* new_textfile = new TextFile(message[2], cwd, message[1]);
+					TextFile* new_textfile = new TextFile(params[1], cwd, message[1]);
 					cwd->AddFile(new_textfile);
 				}
 				else
 				{
 					delete old_file;
-					TextFile* new_textfile = new TextFile(message[2], cwd, message[1]);
+					TextFile* new_textfile = new TextFile(params[1], cwd, message[1]);
 					cwd->AddFile(new_textfile);
 				}
             }
 
             // Output redirect ">>"
-            if (params.size() == 2 && params[0] == ">>")
-            {
-				File* old_file = cwd->GetFile(message[2]);
+			else if (params.size() == 2 && params[0] == ">>")
+			{
+				File* old_file = cwd->GetFile(params[1]);
 				if (old_file == NULL) /*Doesn't exist yet*/
 				{
-					TextFile* new_textfile = new TextFile(message[2], cwd, message[1]);
+					TextFile* new_textfile = new TextFile(params[1], cwd, message[1]);
 					cwd->AddFile(new_textfile);
 				}
 				else
@@ -242,9 +244,10 @@ int main()
 						continue;
 					}
 				}
-            }
-            
-            cerr << "Parse error while parsing " << tokens[0] << endl;
+			}  
+			else{ /*If both conditions dont work*/
+				cerr << "Parse error while parsing " << tokens[0] << endl;
+			}
         }
 
         if (tokens[0] == "pwd")
@@ -263,8 +266,9 @@ int main()
         		continue;
         	}
 			FilesIterator itB = cwd->begin();
+			itB++;
 			FilesIterator itE = cwd->end();
-			for (FilesIterator i = ++itB; i != itE; i++)
+			for (FilesIterator i = itB; i != itE; i++)
 			{
 				cout << i->getName() << endl;
 			}
@@ -342,7 +346,10 @@ int main()
 				{
 					cerr << "Parse error while parsing " << tokens[0] << endl;
 				}
-				delete deleted_file; //will call the d'tor of file. It's a virtual method so a right d'tor will be called.
+				if (cwd->RemoveFile(tokens[1]) == false) //will call the d'tor of file. It's a virtual method so a right d'tor will be called.
+				{
+					cerr << "Parse error while parsing " << tokens[0] << endl;
+				}
 			}
 		}
 
